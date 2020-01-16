@@ -24,6 +24,8 @@ class UltimateTicTacToeGame():
       
   def gameover(self, player):
     turtle.Screen().resetscreen()
+    self.board_drawer.clear()
+    self.scoreturtle.clear()
     self.scoreturtle.speed(0)
     self.scoreturtle.ht()
     self.scoreturtle.penup()
@@ -37,8 +39,10 @@ class UltimateTicTacToeGame():
     self.scoreturtle.setposition(0, -self.screen_height / 6.5)
     self.scoreturtle.write("Game Over!", False, align="center", font=("Arial", 32, "normal"))
     self.gameOver = True
+    #print(player)
     
   def drawGrid(self):
+    self.board_drawer.pensize(3)
     self.board_drawer.penup()
     self.board_drawer.ht()
     self.board_drawer.speed(0)
@@ -128,7 +132,7 @@ class MiniTicTacToeGame():
     r.speed(0)
     if player == 1:
       r.shape("End X")
-    if player == 2:
+    elif player == 2:
       r.shape("End O") 
       r.fillcolor("white")
     r.penup()
@@ -335,14 +339,14 @@ def checkStatus():
   for j in range(3):  
     if gamestate[j] != 0 and gamestate[j] != 3:
       if gamestate[j] == gamestate[3+j] and gamestate[j] == gamestate[6+j]:
-        game.gameover(gamestate[j])    
+        game.gameover(gamestate[j])
   #checks if diagonals are matching
   if gamestate[0] != 0 and gamestate[0] != 3:
     if gamestate[0] == gamestate[4] and gamestate[0] == gamestate[8]:
       game.gameover(gamestate[0])
-  if gamestate[2] != 0 and gamestate[0] != 3:    
+  if gamestate[2] != 0 and gamestate[2] != 3:    
     if gamestate[2] == gamestate[4] and gamestate[2] == gamestate[6]:
-      game.gameover(gamestate[2])  
+      game.gameover(gamestate[2])
   #if entire board is filled, tied
   checker = 0
   for k in range(9):
